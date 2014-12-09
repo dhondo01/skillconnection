@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}
+{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link href="/static/css/style.css" rel="stylesheet">
+
+{% endblock %}
+
+<div class="body">
+{% block content %}
+	<div class="form">
+	  <h2>Page Not Found. </h2>
+	  <br><br>
+	  <p><a href="{{ url_for('index') }}">Skill Connect</a></p>
+	</div> <br>
+	
+{% endblock %}
+</div>
