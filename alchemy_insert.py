@@ -17,13 +17,34 @@ DBSession = sessionmaker(bind=engine)
 # revert all of them back to the last commit by calling
 # session.rollback()
 session = DBSession()
- 
+
+student.drop(engine, checkfirst=True) 
+student.create(engine, checkfirst=True)
+
+job.drop(engine, checkfirst=True) 
+job.create(engine, checkfirst=True)
+
+connection.drop(engine, checkfirst=True) 
+connection.create(engine, checkfirst=True)
 # Insert a Student in the student table
-new_student = Student(id=123, first_name='lucas', last_name='duley', email='dulelu01@luther.edu', student_skill1='ijiji', student_skill2='sdfsdf', student_skill3='sjkij')
-session.add(new_student)
-session.commit()
- 
+
 # Insert an job in the job table
-new_job = Job(id=890, jobTitle='Cook', employerName='Bob', employerPhone=8908980, job_skill1='jjii', job_skill2='jijidf', job_skill3='uiuiu')
+# When employers add jobs, have them enter their own skills and add those to a dropdown for students to choose from.
+
+# Insert a Connection in the Connection table
+new_job = Job(id=1, title='Sales Associate', company='JC Penny', name='Jacqueline Meyer', phone='(563)382-1192', email='penny@gmail.com', skill1='Cashier', skill2='Customer Service', skill3='Sales')
 session.add(new_job)
+new_job = Job(id=2, title='Hotel Front Desk', company='Quality Inn and Suites', name='Michael Douglas', phone='(563)867-5309', email='quality@yahoo.com', skill1='Customer Service', skill2='Computer Skills', skill3='Guest Services')
+session.add(new_job)
+new_job = Job(id=3, title='Construction Worker', company='Decorah Construction', name='Robert Bobson', phone='(563)382-5632', email='bobson123@gmail.com', skill1='Heavy Labor', skill2='Power Tools', skill3='Truck Driving')
+session.add(new_job)
+new_job = Job(id=4, title='Fast Food Worker', company='McDonalds', name='Rebecca Berger', phone='(563)382-7895', email='mickeyds@msn.com', skill1='Cashier', skill2='Customer Service', skill3='Dishwashing', skill4='Grill Operation')
+session.add(new_job)
+
+new_student = Student(id=1, name='lucas duley', email='dulelu01@luther.edu', skill1='Customer Service', skill2='Heavy Labor', skill3='Computer Skills')
+session.add(new_student)
+new_student = Student(id=2, name='bob robertson', email='robebo01@luther.edu', skill1='Grill Operation', skill2='Customer Service', skill3='Computer Skills')
+session.add(new_student)
+new_student = Student(id=3, name='jane doe', email='doeja02@luther.edu', skill1='Dishwashing', skill2='Heavy Labor', skill3='Computer Skills')
+session.add(new_student)
 session.commit()
