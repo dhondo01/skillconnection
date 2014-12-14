@@ -21,10 +21,6 @@ app.secret_key = 'whoisduleyanddorjee'
 def page_not_found(e):
     return render_template('404.html'), 404
 
-@app.route('/')
-def home():
-    return render_template('home.html')
-
 def studentCreate(id, name, email, skill_list):
 	session = DBSession()
 	s_ordered = session.query(Student).order_by(-Student.id)
