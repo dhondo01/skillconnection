@@ -21,7 +21,7 @@ app.secret_key = 'whoisduleyanddorjee'
 def page_not_found(e):
     return render_template('404.html'), 404
 
-def studentCreate(id, name, email, skill_list):
+def studentCreate(name, email, skill_list):
 	session = DBSession()
 	s_ordered = session.query(Student).order_by(-Student.id)
 	new_sid = s_ordered.first().id + 1
@@ -39,7 +39,7 @@ def studentCreate(id, name, email, skill_list):
 
 	session.commit()
 
-def jobCreate(id, title, company, name, email, phone, skill_list):
+def jobCreate(title, company, name, email, phone, skill_list):
 	session = DBSession()
 	j_ordered = session.query(Job).order_by(-Job.id)
 	new_jid = j_ordered.first().id + 1
