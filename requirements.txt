@@ -9,6 +9,7 @@ Tempita==0.5.2
 WTForms==2.0.1
 Werkzeug==0.9.6
 decorator==3.4.0
+gunicorn==19.1.1
 itsdangerous==0.24
 pbr==0.10.0
 six==1.8.0
