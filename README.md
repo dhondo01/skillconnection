@@ -43,7 +43,7 @@ models.py
     
     Job
     
-    Skill
+    Skill - The point of this table is that it is easier to search matching skills using this seperate table and also allows for as many skills as we want. The Student and Job tables now don't have skills in them, the skills are added and linked during studentCreate and jobCreate.
     
     Connection
     
