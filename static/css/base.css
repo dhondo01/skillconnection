@@ -1,14 +1,21 @@
-.footer{
-	margin-top: 20px;
-	margin-left:auto;
-    margin-right:auto;
-    color:#000000;
-    width: 100%;
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
 }
 
-.content{
-	margin-left:auto;
-    margin-right:auto;
-    width:95%;
-    color:#000000;
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  background-color: #f5f5f5;
 }

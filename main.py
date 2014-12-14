@@ -109,5 +109,39 @@ def studentQuery(sid):
 
 	return result
 
+
+#Forms
+class SkillForm(Form):
+    skill = TextField('Skill')
+
+class StudentForm(Form):
+    name = TextField('Name of Student')
+
+class JobForm(Form):
+    job = TextField('Job')
+
+
+#Routes
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+
+@app.route('/skills')
+def skillsearch():
+    form = SkillForm()
+    # if request.args.get("skill") != None:
+    return render_template('skill.html')
+
+@app.route('/students')
+def studentsearch():
+    return render_template('student.html')
+
+@app.route('/jobs')
+def jobsearch():
+    return render_template('job.html')
+
+    
+
 if __name__ == '__main__':
     app.run()

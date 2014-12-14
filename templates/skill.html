@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% block title %}
-{% endblock %}
+{% block title %}Skill Search{% endblock %}
 {% block head %}
     {{ super() }}
     <!-- Bootstrap -->
@@ -11,8 +10,17 @@
 
 
 {% block content %}
-    <div class="container">
-		
+<div class="container theme-showcase" role="main">
+  <div class="page-header">
+    <h1><br />Skill Search</h1>
+  </div>
+</div>
+
+<form class="navbar-form navbar-left" role="search">
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="Search">
 	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
 	
 {% endblock %}
