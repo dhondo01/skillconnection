@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Create New Student{% endblock %}
+{% block head %}
+    {{ super() }}
+    <!-- Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" charset="utf-8">
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container theme-showcase" role="main">
+  <div class="page-header">
+    <h1><br />Create New Student</h1>
+  </div>
+</div>
+
+<form class="navbar-form navbar-left" role="search">
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="Search">
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+	
+{% endblock %}

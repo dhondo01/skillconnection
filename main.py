@@ -21,7 +21,7 @@ app.secret_key = 'whoisduleyanddorjee'
 def page_not_found(e):
     return render_template('404.html'), 404
 
-def studentCreate(name, email, skill_list):
+def studentCreate(name, email, phone, skill_list):
 	session = DBSession()
 	s_ordered = session.query(Student).order_by(-Student.id)
 	new_sid = s_ordered.first().id + 1
@@ -38,6 +38,8 @@ def studentCreate(name, email, skill_list):
 		new_skid += 1
 
 	session.commit()
+
+	return jobSearch(new_sid)
 
 def jobCreate(title, company, name, email, phone, skill_list):
 	session = DBSession()
@@ -61,7 +63,7 @@ def jobCreate(title, company, name, email, phone, skill_list):
 # Searches for skills in job_id items
 # Counter() counts them and puts them from most common to least
 # Returns the job_ids of the 3 best fits in an array
-def StudentSearch(sid):
+def jobSearch(sid):
 	session = DBSession()
 
 	skill_list = []
@@ -105,17 +107,30 @@ def studentQuery(sid):
 
 	return result
 
+def findStudentid(name)
+	session = DBSession()
+
+	q = session.query(Student).filter(Student.name == name).one()
+	return q.id
 
 #Forms
 class SkillForm(Form):
     skill = TextField('Skill')
 
-class StudentForm(Form):
+class NewStudentForm(Form):
     name = TextField('Name of Student')
+    email = TextField('Email')
+    phone = TextField('Phone Number')
 
-class JobForm(Form):
-    job = TextField('Job')
+    skill1 = SelectField('Skill', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
+    skill2 = SelectField('Skill', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
+    skill3 = SelectField('Skill', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
 
+class StudentSearch(Form):
+	name = TextField('Name of Student')
+
+# class JobForm(Form):
+#     job = TextField('Job')
 
 #Routes
 @app.route('/')
@@ -133,11 +148,42 @@ def skillsearch():
 def studentsearch():
     return render_template('student.html')
 
-@app.route('/jobs')
+# Search if student in db
+@app.route('/studentsearch')
 def jobsearch():
-    return render_template('job.html')
+	form = StudentSearch()
+	name = request.args['name']
 
-    
+	if findStudentid(name):
+		sid = findStudentid(name)
+		jobArray = jobSearch(sid)
+
+		# If they are, search result
+		return render_template('job.html', jobArray=jobArray)
+	# return newstudent
+	else:
+		return render_template('newstudent.html')
+
+@app.route('/newstudent')
+def newstudentsearch():
+	form = NewStudentForm()
+
+	name = request.args['name']
+	email = request.args['email']
+	phone = request.args['phone']
+
+	skill1 = request.args['skill1']
+	skill2 = request.args['skill2']
+	skill3 = request.args['skill3']
+	skillArray = []
+	skillArray.append(skill1)
+	skillArray.append(skill2)
+	skillArray.append(skill3)
+
+	sid = studentCreate(name, email, phone, skillArray)
+	jobArray = jobSearch(sid)
+
+	return render_template('job.html', jobArray=jobArray)
 
 if __name__ == '__main__':
     app.run()
