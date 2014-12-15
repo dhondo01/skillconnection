@@ -15,9 +15,10 @@
     <h1><br />Student Search</h1>
   </div>
 
-  <form class="navbar-form navbar-left" role="search">
+  <form class="navbar-form navbar-left" role="search" action="" method="GET">
   	<div class="form-group">
   		<input type="text" class="form-control" placeholder="Student Name">
+      {{ form.name }}
   	</div>
   	<button type="submit" class="btn btn-primary">Search Now</button>
   </form>

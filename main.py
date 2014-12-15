@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, url_for, jsonify
+from flask import Flask, render_template, request, session, url_for, jsonify, redirect
 from flask.ext.sqlalchemy import SQLAlchemy
 from wtforms import *
 from flask_bootstrap import Bootstrap
@@ -103,6 +103,7 @@ def studentQuery(sid):
 	q = session.query(Student).filter(Student.id == sid).one()
 	result.append(q.name)
 	result.append(q.email)
+	result.append(q.phone)
 
 	return result
 
@@ -112,84 +113,103 @@ def findStudentid(name):
 	q = session.query(Student).filter(Student.name == name).one()
 	return q.id
 
+def getStudentSkills(sid):
+	session = DBSession()
+	skillArray = []
+	items = session.query(Skill).filter(Skill.student_id == sid).all()
+	for i in items:
+		skillArray.append(i.skill)
+	return skillArray
+
 #Forms
 class SkillForm(Form):
-    skill = TextField('Skill')
+	skill = TextField('Skill')
 
 class NewStudentForm(Form):
-    name = TextField('Name of Student')
-    email = TextField('Email')
-    phone = TextField('Phone Number')
+	name = TextField('Name of Student')
+	email = TextField('Email')
+	phone = TextField('Phone Number')
 
-    skill1 = SelectField('Skill', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
-    skill2 = SelectField('Skill', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
-    skill3 = SelectField('Skill', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
+	skill1 = SelectField('Skill', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
+	skill2 = SelectField('Skill', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
+	skill3 = SelectField('Skill', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
 
 class StudentSearch(Form):
 	name = TextField('Name of Student')
 
 class JobForm(Form):
-    job = TextField('Job')
+	job = TextField('Job')
 
 
 
 # controllers
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+	return render_template('404.html'), 404
 
 #Routes
 @app.route('/')
 def home():
-    return render_template('home.html')
+	return render_template('home.html')
 
 
 @app.route('/skills')
 def skillsearch():
-    form = SkillForm()
-    # if request.args.get("skill") != None:
-    return render_template('skill.html')
+	form = SkillForm()
+	# if request.args.get("skill") != None:
+	return render_template('skill.html')
 
 @app.route('/students')
 def studentsearch():
-    return render_template('student.html')
-
-# Search if student in db
-@app.route('/jobs')
-def jobsearch():
 	form = StudentSearch()
-	name = request.args['name']
-
-	if findStudentid(name):
+	if 'name' in request.args: 
+		name = request.args['name']
 		sid = findStudentid(name)
-		jobs = jobSearch(sid)
+		studentInfo = studentQuery(sid)
+		skillInfo = getStudentSkills(sid)
+		return redirect(url_for('/sprofile'))
+	return render_template('student.html', form=form)
 
-		# If they are, search result
-		return render_template('job.html', form=form, jobs=jobs)
-	# return newstudent
-	else:
-		return render_template('newstudent.html', form=form)
+@app.route('/sprofile')
+def sprofile():
+	return render_template('sprofile.html')
 
-@app.route('/newstudent')
-def newstudent():
-	form = NewStudentForm()
+# # Search if student in db
+# @app.route('/jobs')
+# def jobsearch():
+# 	form = StudentSearch()
+# 	name = request.args['name']
 
-	name = request.args['name']
-	email = request.args['email']
-	phone = request.args['phone']
+# 	if findStudentid(name):
+# 		sid = findStudentid(name)
+# 		jobs = jobSearch(sid)
 
-	skill1 = request.args['skill1']
-	skill2 = request.args['skill2']
-	skill3 = request.args['skill3']
-	skillArray = []
-	skillArray.append(skill1)
-	skillArray.append(skill2)
-	skillArray.append(skill3)
+# 		# If they are, search result
+# 		return render_template('job.html', form=form, jobs=jobs)
+# 	# return newstudent
+# 	else:
+# 		return render_template('newstudent.html', form=form)
 
-	sid = studentCreate(name, email, phone, skillArray)
-	jobs = jobSearch(sid)
+# @app.route('/newstudent')
+# def newstudent():
+# 	form = NewStudentForm()
 
-	return render_template('job.html', jobs=jobArray)
+# 	name = request.args['name']
+# 	email = request.args['email']
+# 	phone = request.args['phone']
+
+# 	skill1 = request.args['skill1']
+# 	skill2 = request.args['skill2']
+# 	skill3 = request.args['skill3']
+# 	skillArray = []
+# 	skillArray.append(skill1)
+# 	skillArray.append(skill2)
+# 	skillArray.append(skill3)
+
+# 	sid = studentCreate(name, email, phone, skillArray)
+# 	jobs = jobSearch(sid)
+
+# 	return render_template('job.html', jobs=jobArray)
 
 if __name__ == '__main__':
-    app.run()
+	app.run()
