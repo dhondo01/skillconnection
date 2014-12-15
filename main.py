@@ -137,7 +137,7 @@ class JobForm(Form):
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
-    
+
 #Routes
 @app.route('/')
 def home():
@@ -155,23 +155,23 @@ def studentsearch():
     return render_template('student.html')
 
 # Search if student in db
-@app.route('/studentsearch')
+@app.route('/jobs')
 def jobsearch():
 	form = StudentSearch()
 	name = request.args['name']
 
 	if findStudentid(name):
 		sid = findStudentid(name)
-		jobArray = jobSearch(sid)
+		jobs = jobSearch(sid)
 
 		# If they are, search result
-		return render_template('job.html', jobArray=jobArray)
+		return render_template('job.html', form=form, jobs=jobs)
 	# return newstudent
 	else:
 		return render_template('newstudent.html', form=form)
 
 @app.route('/newstudent')
-def newstudentsearch():
+def newstudent():
 	form = NewStudentForm()
 
 	name = request.args['name']
@@ -187,9 +187,9 @@ def newstudentsearch():
 	skillArray.append(skill3)
 
 	sid = studentCreate(name, email, phone, skillArray)
-	jobArray = jobSearch(sid)
+	jobs = jobSearch(sid)
 
-	return render_template('job.html', jobArray=jobArray)
+	return render_template('job.html', jobs=jobArray)
 
 if __name__ == '__main__':
     app.run()
