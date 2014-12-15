@@ -1,1 +1,18 @@
-<p>Yaya</p>
+{% extends "base.html" %}
+{% block title %}Student Search{% endblock %}
+{% block head %}
+    {{ super() }}
+    <!-- Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" charset="utf-8">
+
+{% endblock %}
+
+{% block content %}
+<br><br><br><br>
+	<p>{{studentInfo[0]}}</p>
+	<p>{{studentInfo[1]}}</p>
+	<p>{{studentInfo[2]}}</p>
+	<p>{{skillInfo}}</p>
+
+{% endblock %}
