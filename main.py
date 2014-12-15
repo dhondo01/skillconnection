@@ -18,10 +18,7 @@ app.secret_key = 'whoisduleyanddorjee'
 
 Bootstrap(app)
 
-# controllers
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
+
 
 def studentCreate(name, email, phone, skill_list):
 	session = DBSession()
@@ -134,6 +131,13 @@ class StudentSearch(Form):
 # class JobForm(Form):
 #     job = TextField('Job')
 
+
+
+# controllers
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+    
 #Routes
 @app.route('/')
 def home():

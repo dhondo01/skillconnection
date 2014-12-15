@@ -14,13 +14,27 @@
   <div class="page-header">
     <h1><br />Student Search</h1>
   </div>
+
+  <form class="navbar-form navbar-left" role="search">
+  	<div class="form-group">
+  		<input type="text" class="form-control" placeholder="Student Name">
+  	</div>
+  	<button type="submit" class="btn btn-primary">Search Now</button>
+  </form>
+
+</div>
+<hr>
+<div class="panel panel-info col-md-12" class="fulldiv">
+        <div class="panel-heading">
+          <h3 class="panel-title">Looking for students with skills?</h3>
+        </div>
+        <div class="panel-body">
+          Please choose between the following options if you could not find student in the search field. You may search again for another student or add a new student to our database. Thank you!
+        </div>
+</div>
+<div class="container">
+  <a class="col-sm-2" href="/students"><button type="button" class="btn btn-xs btn-warning">Search Again</button></a>
+  <a class="col-sm-2" href="/newstudent"><button type="button" class="btn btn-xs btn-success ">Add New Student</button></a>
 </div>
 
-<form class="navbar-form navbar-left" role="search">
-	<div class="form-group">
-		<input type="text" class="form-control" placeholder="Search">
-	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
-</form>
-	
 {% endblock %}
