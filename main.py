@@ -16,6 +16,8 @@ app = Flask(__name__)
 app.debug = True
 app.secret_key = 'whoisduleyanddorjee'
 
+Bootstrap(app)
+
 # controllers
 @app.errorhandler(404)
 def page_not_found(e):
@@ -107,7 +109,7 @@ def studentQuery(sid):
 
 	return result
 
-def findStudentid(name)
+def findStudentid(name):
 	session = DBSession()
 
 	q = session.query(Student).filter(Student.name == name).one()
@@ -162,7 +164,7 @@ def jobsearch():
 		return render_template('job.html', jobArray=jobArray)
 	# return newstudent
 	else:
-		return render_template('newstudent.html')
+		return render_template('newstudent.html', form=form)
 
 @app.route('/newstudent')
 def newstudentsearch():

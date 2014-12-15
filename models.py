@@ -83,11 +83,11 @@ new_job = Job(id=4, title='Fast Food Worker', company='McDonalds', name='Rebecca
 session.add(new_job)
 
 # Add students
-new_student = Student(id=1, name='lucas duley', email='dulelu01@luther.edu', '(546)789-1232')
+new_student = Student(id=1, name='lucas duley', email='dulelu01@luther.edu', phone='546-789-1232')
 session.add(new_student)
-new_student = Student(id=2, name='bob robertson', email='robebo01@luther.edu', '(789)897-1234')
+new_student = Student(id=2, name='bob robertson', email='robebo01@luther.edu', phone='789-897-1234')
 session.add(new_student)
-new_student = Student(id=3, name='jane doe', email='doeja02@luther.edu', '(789)837-1234')
+new_student = Student(id=3, name='jane doe', email='doeja02@luther.edu', phone='789-837-1234')
 session.add(new_student)
 
 # Add job skills
