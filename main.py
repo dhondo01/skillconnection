@@ -128,8 +128,8 @@ class NewStudentForm(Form):
 class StudentSearch(Form):
 	name = TextField('Name of Student')
 
-# class JobForm(Form):
-#     job = TextField('Job')
+class JobForm(Form):
+    job = TextField('Job')
 
 
 

@@ -15,27 +15,20 @@
     <h1><br />Job Search</h1>
   </div>
 </div>
-
-{% if jobs == [] or not jobs %}
-    {% if qr %}
      <div class="page-header">
       <h3>Attention!</h3>
       <div class="alert alert-info">
-        <strong>Oh snap!</strong> The name matched anyone in our database.
+        <strong>Oh snap!</strong> This name is not in our database yet.
         </div>
       </div>
-    {% endif %}
-      <form method="GET" action="/students">
-        <div><span class="input-label">{{ form.name.label }}:</span> {{ form.name }}</div>
-        <input type="submit" value="Submit">
+      
+      <form class="navbar-form navbar-left" role="search" method="GET" action="/jobs">
+      	<div class="form-group">
+      		<input type="text" class="form-control" placeholder="Job Name">
+          {{ form.job }}
+      	</div>
+      	<button type="submit" class="btn btn-primary">Search</button>
       </form>
       <br>
-      
-<!-- <form class="navbar-form navbar-left" role="search">
-	<div class="form-group">
-		<input type="text" class="form-control" placeholder="Search">
-	</div>
-	<button type="submit" class="btn btn-primary">Submit</button>
-</form>
- -->	
+	
 {% endblock %}
