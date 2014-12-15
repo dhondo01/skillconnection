@@ -16,16 +16,16 @@
   </div>
 </div>
 
-{% if results == [] or not results %}
+{% if jobs == [] or not jobs %}
     {% if qr %}
      <div class="page-header">
-      <h3>Alert!</h3>
+      <h3>Attention!</h3>
       <div class="alert alert-info">
-        <strong>Oh snap!</strong> Can't find anyone with that name!
+        <strong>Oh snap!</strong> The name matched anyone in our database.
         </div>
       </div>
     {% endif %}
-      <form method="GET" action="/users">
+      <form method="GET" action="/students">
         <div><span class="input-label">{{ form.name.label }}:</span> {{ form.name }}</div>
         <input type="submit" value="Submit">
       </form>
