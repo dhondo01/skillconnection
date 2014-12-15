@@ -16,11 +16,26 @@
   </div>
 </div>
 
-<form class="navbar-form navbar-left" role="search">
+{% if results == [] or not results %}
+    {% if qr %}
+     <div class="page-header">
+      <h3>Alert!</h3>
+      <div class="alert alert-info">
+        <strong>Oh snap!</strong> Can't find anyone with that name!
+        </div>
+      </div>
+    {% endif %}
+      <form method="GET" action="/users">
+        <div><span class="input-label">{{ form.name.label }}:</span> {{ form.name }}</div>
+        <input type="submit" value="Submit">
+      </form>
+      <br>
+      
+<!-- <form class="navbar-form navbar-left" role="search">
 	<div class="form-group">
 		<input type="text" class="form-control" placeholder="Search">
 	</div>
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
-	
+ -->	
 {% endblock %}
