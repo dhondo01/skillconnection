@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, url_for, jsonify, redirect
+from flask import Flask, render_template, request, session, url_for, jsonify, redirect, flash
 from flask.ext.sqlalchemy import SQLAlchemy
 from wtforms import *
 from flask_bootstrap import Bootstrap
@@ -20,8 +20,6 @@ app.secret_key = 'whoisduleyanddorjee'
 
 Bootstrap(app)
 
-
-
 def studentCreate(name, email, phone, skill_list):
 	session = DBSession()
 	s_ordered = session.query(Student).order_by(-Student.id)
@@ -30,7 +28,7 @@ def studentCreate(name, email, phone, skill_list):
 	sk_ordered = session.query(Skill).order_by(-Skill.id)
 	new_skid = sk_ordered.first().id + 1
 
-	new_student = Student(id=new_sid, name=name, email=email)
+	new_student = Student(id=new_sid, name=name, email=email, phone=phone)
 	session.add(new_student)
 
 	# Pass an array of skills
@@ -38,6 +36,7 @@ def studentCreate(name, email, phone, skill_list):
 		new_skill = Skill(id=new_skid, student_id=new_sid, skill=skill)
 		new_skid += 1
 
+	flash('done')
 	session.commit()
 
 def jobCreate(title, company, name, email, phone, skill_list):
@@ -204,7 +203,7 @@ def jobsearch():
 @app.route('/newstudent')
 def newstudent():
 	form = NewStudentForm()
-	if 'name' in request.args:
+	if 'firstname' in request.args:
 		firstname = request.args['firstname']
 		firstname = firstname.lower()
 		lastname = request.args['lastname']
@@ -221,9 +220,12 @@ def newstudent():
 		skillArray.append(skill2)
 		skillArray.append(skill3)
 
-		sid = studentCreate(name, email, phone, skillArray)
-
-		return redirect(url_for('sprofile', sid=sid))
+		try:
+			sid = studentCreate(name, email, phone, skillArray)
+			full_url = url_for('sprofile', sid=sid)
+			return redirect(full_url)
+		except NoResultFound:
+			return render_template('newstudent.html', form=form)
 	else:
 		return render_template('newstudent.html', form=form)
 
