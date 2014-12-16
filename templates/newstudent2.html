@@ -9,18 +9,35 @@
 {% endblock %}
 
 {% block content %}
-<br><br><br><br>
-    <form method="GET" action="/newstudent">
-	<div><span class="input-label">{{ form.firstname.label }}: </span> {{ form.firstname }}</div>
-	<div><span class="input-label">{{ form.lastname.label }}: </span> {{ form.lastname }}</div>
-	<div><span class="input-label">{{ form.email.label }}: </span> {{ form.email }}</div>
-	<div><span class="input-label">{{ form.phone.label }}: </span> {{ form.phone }}</div>
-	<div><span class="input-label">{{ form.skill1.label }}: </span> {{ form.skill1 }}</div>
-	<div><span class="input-label">{{ form.skill2.label }}: </span> {{ form.skill2 }}</div>
-	<div><span class="input-label">{{ form.skill3.label }}: </span> {{ form.skill3 }}</div>
+<div class="container theme-showcase" role="main">
+  <div class="page-header">
+    <h1><br />Create New Student</h1>
+  </div>
+</div>
 
-	</div> 
-	<button type="submit" class="btn btn-primary btn-m">Submit</button>
-</form>
+<div class="panel panel-info col-md-12" class="fulldiv">
+      <div class="panel-heading">
+        <h3 class="panel-title">Join the adventure!</h3>
+      </div>
+      <div class="panel-body">
+        Please add yourself to our database. Based on your information, our app can generate related jobs. Have a good day!
+      </div>
+</div>
+
+<div class="container">
+    <form method="GET" action="/newstudent">
+		<div><span class="input-label">{{ form.firstname.label }}: </span> {{ form.firstname }}</div>
+		<div><span class="input-label">{{ form.lastname.label }}: </span> {{ form.lastname }}</div>
+		<div><span class="input-label">{{ form.email.label }}: </span> {{ form.email }}</div>
+		<div><span class="input-label">{{ form.phone.label }}: </span> {{ form.phone }}</div>
+		<div><span class="input-label">{{ form.skill1.label }}: </span> {{ form.skill1 }}</div>
+		<div><span class="input-label">{{ form.skill2.label }}: </span> {{ form.skill2 }}</div>
+		<div><span class="input-label">{{ form.skill3.label }}: </span> {{ form.skill3 }}</div>
+		</div> 
+		<br>
+		
+		<button type="submit" class="btn btn-primary btn-m">Submit</button>
+	</form>
+</div>
 
 {% endblock %}
