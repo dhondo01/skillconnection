@@ -183,8 +183,6 @@ def sprofile(sid):
 	name = first + " " + last
 	skillInfo = getStudentSkills(sid)
 	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo)
-
-<<<<<<< HEAD
 # Search if student in db
 @app.route('/jobs')
 def jobsearch():
