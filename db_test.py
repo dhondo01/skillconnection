@@ -32,40 +32,7 @@ session = DBSession()
 # address = session.query(Address).filter(Address.person == person).one()
 # address.post_code
 
+name = "Lucas Duley"
+name = name.lower()
 
-def jobMatch(sid):
-	session = DBSession()
-
-	skill_list = []
-	q = session.query(Skill).filter(Skill.student_id == sid).all()
-	for b in q:
-		skill_list.append(b.skill)
-	tally = []
-	for skill in skill_list:
-		s = session.query(Skill).filter(Skill.skill == skill, Skill.job_id).all()
-		for c in s:
-			j = session.query(Job).filter(Job.id == c.job_id).one()
-			tally.append(c.job_id)
-	most_common = Counter(tally).most_common()
-	print(most_common)
-	result = []
-	result.append(most_common[0][0])
-	result.append(most_common[1][0])
-	result.append(most_common[2][0])
-	print(result)
-	return result
-
-def jobQuery(jid):
-	session = DBSession()
-
-	result = []
-	q = session.query(Job).filter(Job.id == jid).one()
-	result.append(q.title)
-	result.append(q.company)
-	result.append(q.name)
-	result.append(q.email)
-	result.append(q.phone)
-
-	return result 
-
-print(jobMatch(1))
+print(name)

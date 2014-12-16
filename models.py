@@ -62,19 +62,19 @@ session = DBSession()
 # When employers add jobs, have them enter their own skills and add those to a dropdown for students to choose from.
 
 # Add jobs
-new_job = Job(id=1, title='Sales Associate', company='JC Penny', name='Jacqueline Meyer', phone='(563)382-1192', email='penny@gmail.com')
+new_job = Job(id=1, title='Sales Associate', company='JC Penny', name='jacqueline meyer', phone='(563)382-1192', email='penny@gmail.com')
 session.add(new_job)
-new_job = Job(id=2, title='Hotel Front Desk', company='Quality Inn and Suites', name='Michael Douglas', phone='(563)867-5309', email='quality@yahoo.com')
+new_job = Job(id=2, title='Hotel Front Desk', company='Quality Inn and Suites', name='michael douglas', phone='(563)867-5309', email='quality@yahoo.com')
 session.add(new_job)
-new_job = Job(id=3, title='Construction Worker', company='Decorah Construction', name='Robert Bobson', phone='(563)382-5632', email='bobson123@gmail.com')
+new_job = Job(id=3, title='Construction Worker', company='Decorah Construction', name='robert bobson', phone='(563)382-5632', email='bobson123@gmail.com')
 session.add(new_job)
-new_job = Job(id=4, title='Fast Food Worker', company='McDonalds', name='Rebecca Berger', phone='(563)382-7895', email='mickeyds@msn.com')
+new_job = Job(id=4, title='Fast Food Worker', company='McDonalds', name='rebecca berger', phone='(563)382-7895', email='mickeyds@msn.com')
 session.add(new_job)
-new_job = Job(id=5, title='Tech Helpdesk', company='LIS', name='Carsten Earl', phone='(533)382-5632', email='earcal@luther.edu')
+new_job = Job(id=5, title='Tech Helpdesk', company='LIS', name='carsten earl', phone='(533)382-5632', email='earcal@luther.edu')
 session.add(new_job)
-new_job = Job(id=6, title='French Tutor', company='French Department', name='Madame Feat', phone='(563)381-7895', email='feat@luther.edu')
+new_job = Job(id=6, title='French Tutor', company='French Department', name='madame feat', phone='(563)381-7895', email='feat@luther.edu')
 session.add(new_job)
-new_job = Job(id=7, title='Box Office', company='Campus Programming', name='Bradley Philips', phone='(563)381-5555', email='philbr01@luther.edu')
+new_job = Job(id=7, title='Box Office', company='Campus Programming', name='bradley philips', phone='(563)381-5555', email='philbr01@luther.edu')
 session.add(new_job)
 
 

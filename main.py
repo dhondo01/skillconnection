@@ -197,7 +197,7 @@ def studentsearch():
 	form = StudentSearch()
 	if 'name' in request.args: 
 		name = request.args['name']
-
+		name = name.lower()
 		try:
 			sid = findStudentid(name)
 			sid = str(sid)
@@ -217,11 +217,15 @@ def sprofile(sid):
 	skillInfo = getStudentSkills(sid)
 
 	idArray = jobMatch(sid)
-	employerName = studentQuery(sid)[0]
+	employerName = studentQuery(sid)[0].capitalize()
 	jobNameArray = []
 	jobTitleArray = []
 	for i in idArray:
-		jobNameArray.append(jobQuery(i)[2])
+		a = jobQuery(i)[2].split()
+		firsta = a[0].capitalize()
+		lasta = a[1].capitalize()
+		b = firsta + " " + lasta
+		jobNameArray.append(b)
 		jobTitleArray.append(jobQuery(i)[0])
 
 	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo, jobNameArray=jobNameArray, jobTitleArray=jobTitleArray, employerName=employerName)
