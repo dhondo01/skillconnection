@@ -150,6 +150,7 @@ def getJobSkills(jid):
 		skillArray.append(i.skill)
 	return skillArray
 
+
 #Forms
 class SkillForm(Form):
 	skill = TextField('Skill')
@@ -165,7 +166,13 @@ class NewStudentForm(Form):
 	skill3 = SelectField('Skill 3', choices=[('Guest Services','Guest Services'), ('French','French'), ('Heavy Labor','Heavy Labor'), ('History','History'), ('Ticket Selling','Ticket Selling'), ('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
 
 class StudentSearch(Form):
-	name = TextField('Name of Student')
+	def __init__(self, *args, **kwargs):
+		Form.__init__(self, *args, **kwargs)
+		self.name = None
+		name = TextField('Name of Student', [validators.])
+
+	def studentValidate(self):
+		if not 
 
 class NewJobForm(Form):
 	firstname = TextField('First Name')
@@ -195,7 +202,7 @@ def home():
 @app.route('/students')
 def studentsearch():
 	form = StudentSearch()
-	if 'name' in request.args: 
+	if name in request.args['name']: 
 		name = request.args['name']
 		name = name.lower()
 		try:
