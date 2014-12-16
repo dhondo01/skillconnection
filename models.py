@@ -148,19 +148,30 @@ session.add(new_skill)
 new_skill= Skill(id=25, student_id=4, skill='Customer Services')
 session.add(new_skill)
 
-new_skill= Skill(id=32, job_id=7, skill='Communication Skills')
-session.add(new_skill)
-
-new_skill= Skill(id=33, job_id=7, skill='Ticket Selling')
-session.add(new_skill)
-
 
 new_skill= Skill(id=26, job_id=5, skill='Communication Skills')
 session.add(new_skill)
-new_skill= Skill(id=27, job_id=6, skill='French')
+new_skill= Skill(id=36, job_id=5, skill='MacBook')
+session.add(new_skill)
+new_skill= Skill(id=37, job_id=5, skill='Windows')
 session.add(new_skill)
 
+
+new_skill= Skill(id=27, job_id=6, skill='French')
+session.add(new_skill)
+new_skill= Skill(id=34, job_id=6, skill='Foreign Language')
+session.add(new_skill)
+new_skill= Skill(id=35, job_id=6, skill='History')
+session.add(new_skill)
+
+new_skill= Skill(id=32, job_id=7, skill='Communication Skills')
+session.add(new_skill)
+new_skill= Skill(id=33, job_id=7, skill='Ticket Selling')
+session.add(new_skill)
 new_skill=Skill(id=31, job_id=7, skill="Customer Services")
 session.add(new_skill)
+
+
+
 session.commit()
 
