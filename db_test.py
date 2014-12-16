@@ -5,7 +5,7 @@ from flask_bootstrap import Bootstrap
 from sqlalchemy.orm.exc import NoResultFound
 import os
 
-from models import Student, Job, Connection, Base, Skill
+from models import Student, Job, Base, Skill
 from sqlalchemy import create_engine
 engine = create_engine('sqlite:///connection.db')
 Base.metadata.bind = engine
@@ -34,8 +34,33 @@ session = DBSession()
 # GET IS BEAUTIFUL
 # q = session.query(Student)
 # print(q.get(2).name)
-firstname = 'Lucas'
-firstname = firstname.lower()
-lastname = 'Duley'
-lastname = lastname.lower()
-print(firstname + " " + lastname)
+def studentCreate(name, email, phone, skill_list):
+	session = DBSession()
+	s_ordered = session.query(Student).order_by(-Student.id)
+	new_sid = s_ordered.first().id + 1
+
+	sk_ordered = session.query(Skill).order_by(-Skill.id)
+	new_skid = sk_ordered.first().id + 1
+
+	new_student = Student(id=new_sid, name=name, email=email, phone=phone)
+	session.add(new_student)
+
+	# Pass an array of skills
+	for skill in skill_list:
+		new_skill = Skill(id=new_skid, student_id=new_sid, skill=skill)
+		new_skid += 1
+
+	session.commit()
+
+def studentQuery(sid):
+	session = DBSession()
+
+	result = []
+	q = session.query(Student).filter(Student.id == sid).one()
+	result.append(q.name)
+	result.append(q.email)
+	result.append(q.phone)
+
+	return result
+
+print(studentQuery(5))

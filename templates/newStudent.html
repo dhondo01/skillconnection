@@ -40,7 +40,7 @@
 </div>
 
 <div class="container">
-    <form method="GET" action="/newstudent">
+    <form methods=["GET","POST"] action="/newstudent">
       <div class="form-group">
         <label for="nameField">First Name</label>
       <input type="text" class="form-control" id="nameField" name="firstname" placeholder="Enter First Name" required>
@@ -63,7 +63,7 @@
 
     <div class="form-group">
       <label for="sel1">Select 1st Skill:</label>
-      <select data-width="auto" class="form-control" id="sel1">
+      <select data-width="auto" class="form-control" id="sel1" name="skill1">
         <option>Customer Service</option>
         <option>Cashier</option>
         <option>Dishwashing</option>
@@ -73,7 +73,7 @@
     </div>
     <div class="form-group">
       <label for="sel2">Select 2nd Skill:</label>
-      <select data-width="auto" class="form-control" id="sel2">
+      <select data-width="auto" class="form-control" id="sel2" name="skill2">
         <option>Customer Service</option>
         <option>Cashier</option>
         <option>Dishwashing</option>
@@ -84,7 +84,7 @@
 
     <div class="form-group">
       <label for="sel3">Select 3rd Skill:</label>
-      <select data-width="auto" class="form-control" id="sel3">
+      <select data-width="auto" class="form-control" id="sel3" name="skill3">
         <option>Customer Service</option>
         <option>Cashier</option>
         <option>Dishwashing</option>
