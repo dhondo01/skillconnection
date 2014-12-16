@@ -67,26 +67,26 @@ def jobCreate(title, company, name, email, phone, skill_list):
 # Searches for skills in job_id items
 # Counter() counts them and puts them from most common to least
 # Returns the job_ids of the 3 best fits in an array
-# def jobSearch(sid):
-# 	session = DBSession()
+def jobMatch(sid):
+	session = DBSession()
 
-# 	skill_list = []
-# 	q = session.query(Skill).filter(Skill.student_id == sid).all()
-# 	for b in a:
-# 		skill_list.append(b.skill)
-# 	tally = []
-# 	for skill in skill_list:
-# 		s = session.query(Skill).filter(Skill.skill == skill, Skill.job_id).all()
-# 		for c in s:
-# 			j = session.query(Job).filter(Job.id == c.job_id).one()
-# 			tally.append(c.job_id)
-# 	most_common = Counter(tally).most_common()
-# 	result = []
-# 	result.append(most_common[0][0])
-# 	result.append(most_common[1][0])
-# 	result.append(most_common[2][0])
+	skill_list = []
+	q = session.query(Skill).filter(Skill.student_id == sid).all()
+	for b in a:
+		skill_list.append(b.skill)
+	tally = []
+	for skill in skill_list:
+		s = session.query(Skill).filter(Skill.skill == skill, Skill.job_id).all()
+		for c in s:
+			j = session.query(Job).filter(Job.id == c.job_id).one()
+			tally.append(c.job_id)
+	most_common = Counter(tally).most_common()
+	result = []
+	result1 = jobQuery(most_common[0][0])[2]
+	result2 = jobQuery(most_common[1][0])[2]
+	result3 = jobQuery(most_common[2][0])[2]
 
-# 	return result
+	return result
 
 def jobQuery(jid):
 	session = DBSession()
@@ -205,7 +205,8 @@ def sprofile(sid):
 	last = name[1].capitalize()
 	name = first + " " + last
 	skillInfo = getStudentSkills(sid)
-	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo)
+	jobMatches = jobMatch(sid)
+	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo, jobMatches=jobMatches)
 
 @app.route('/jprofile/<jid>')
 def jprofile(jid):
