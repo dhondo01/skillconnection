@@ -78,7 +78,7 @@ new_student = Student(id=2, name='bob robertson', email='robebo01@luther.edu', p
 session.add(new_student)
 new_student = Student(id=3, name='jane doe', email='doeja02@luther.edu', phone='789-837-1234')
 session.add(new_student)
-new_student = Student(id=4, name='Dorjee Dhondup', email='dhondo01@luther.edu', phone='515-837-1234')
+new_student = Student(id=4, name='dorjee dhondup', email='dhondo01@luther.edu', phone='515-837-1234')
 session.add(new_student)
 
 # Add job skills
