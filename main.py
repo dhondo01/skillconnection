@@ -10,6 +10,7 @@ engine = create_engine('sqlite:///connection.db')
 Base.metadata.bind = engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.exc import NoResultFound
+from collections import Counter
 
 DBSession = sessionmaker()
 DBSession.bind = engine
