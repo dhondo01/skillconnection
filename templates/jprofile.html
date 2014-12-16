@@ -13,13 +13,20 @@
 
 <div class="container theme-showcase" role="main">
   <div class="page-header">
-    <h1><br/>{{ name }}</h1>
+    <h1><br/>Employer: {{ name }}</h1>
   </div>
   <div class="panel panel-primary col-md-9">
     <div class="panel-heading">
       <h3 class="panel-title">Job Profile</h3>
     </div>
     <div class="panel-body">
+
+      <h4>Job Details:</h4>
+      <ul>
+        <li>Title: {{jobInfo[0]}}
+        <li>Company: {{jobInfo[1]}}</li>
+      </ul>
+
     	<h4>Skills Required:</h4>
       <ul>
         <li>{{skillInfo[0]}}</li>
@@ -29,8 +36,6 @@
 
       <h4>Contact {{ name }}: </h3>
       <ul>
-        <li>Title: {{jobInfo[0]}}
-        <li>Company: {{jobInfo[1]}}</li>
         <li>Email: <a href= "mailto: {{jobInfo[3]}}" target="_blank"> {{jobInfo[3]}}</a></li>
         <li>Phone: {{jobInfo[4]}}</li>
       </ul>

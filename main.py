@@ -206,6 +206,10 @@ def sprofile(sid):
 	last = name[1].capitalize()
 	name = first + " " + last
 	skillInfo = getStudentSkills(sid)
+<<<<<<< HEAD
+	# jobMatches = jobMatch(sid)
+	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo)
+=======
 
 	idArray = jobMatch(sid)
 	name = studentQuery(sid)[0]
@@ -216,6 +220,7 @@ def sprofile(sid):
 		jobTitleArray.append(jobQuery(i)[0])
 
 	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo, jobNameArray=jobNameArray, jobTitleArray=jobTitleArray)
+>>>>>>> 11d666c8a333dcbac93a448ff2f1fc748c172e87
 
 @app.route('/jprofile/<jid>')
 def jprofile(jid):
