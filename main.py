@@ -36,8 +36,9 @@ def studentCreate(name, email, phone, skill_list):
 		new_skill = Skill(id=new_skid, student_id=new_sid, skill=skill)
 		new_skid += 1
 
-	flash('done')
 	session.commit()
+
+	return new_sid
 
 def jobCreate(title, company, name, email, phone, skill_list):
 	session = DBSession()
@@ -226,7 +227,6 @@ def newstudent():
 		return redirect(full_url)
 
 	else:
-		flash('error')
 		return render_template('newstudent2.html', form=form)
 
 

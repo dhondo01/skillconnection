@@ -63,4 +63,4 @@ def studentQuery(sid):
 
 	return result
 
-print(studentQuery(5))
+print(studentQuery(8))
