@@ -70,6 +70,13 @@ new_job = Job(id=3, title='Construction Worker', company='Decorah Construction',
 session.add(new_job)
 new_job = Job(id=4, title='Fast Food Worker', company='McDonalds', name='Rebecca Berger', phone='(563)382-7895', email='mickeyds@msn.com')
 session.add(new_job)
+new_job = Job(id=5, title='Tech Helpdesk', company='LIS', name='Carsten Earl', phone='(533)382-5632', email='earcal@luther.edu')
+session.add(new_job)
+new_job = Job(id=6, title='French Tutor', company='French Department', name='Madame Feat', phone='(563)381-7895', email='feat@luther.edu')
+session.add(new_job)
+new_job = Job(id=7, title='Box Office', company='Campus Programming', name='Bradley Philips', phone='(563)381-5555', email='philbr01@luther.edu')
+session.add(new_job)
+
 
 # Add students
 new_student = Student(id=1, name='lucas duley', email='dulelu01@luther.edu', phone='546-789-1232')
@@ -110,7 +117,6 @@ session.add(new_skill)
 new_skill= Skill(id=12, job_id=4, skill='Dishwashing')
 session.add(new_skill)
 new_skill= Skill(id=13, job_id=4, skill='Grill Operation')
-session.add(new_skill)
 
 # Add student skills
 new_skill = Skill(id=14, student_id=1, skill='Customer Service')
@@ -134,6 +140,7 @@ session.add(new_skill)
 new_skill= Skill(id=22, student_id=3, skill='Computer Skills')
 session.add(new_skill)
 
+
 new_skill = Skill(id=23, student_id=4, skill='Communication Skills')
 session.add(new_skill)
 new_skill= Skill(id=24, student_id=4, skill='French')
@@ -141,4 +148,19 @@ session.add(new_skill)
 new_skill= Skill(id=25, student_id=4, skill='Customer Services')
 session.add(new_skill)
 
+new_skill= Skill(id=32, job_id=7, skill='Communication Skills')
+session.add(new_skill)
+
+new_skill= Skill(id=33, job_id=7, skill='Ticket Selling')
+session.add(new_skill)
+
+
+new_skill= Skill(id=26, job_id=5, skill='Communication Skills')
+session.add(new_skill)
+new_skill= Skill(id=27, job_id=6, skill='French')
+session.add(new_skill)
+
+new_skill=Skill(id=31, job_id=7, skill="Customer Services")
+session.add(new_skill)
 session.commit()
+
