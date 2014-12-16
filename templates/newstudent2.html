@@ -15,6 +15,20 @@
   </div>
 </div>
 
+{% if not form %} 
+<div class="page-header">
+    <h3>Congratulations!</h3>
+    <div class="alert alert-success">
+      You are successfully added to our database. Please see the jobs based on your skills.
+      </div>
+</div>
+
+
+<a class="col-md-12" href="/3jobs"><button type="button" class="btn btn-s btn-success">Look at the jobs</button></a>
+
+
+{% else %}
+
 <div class="panel panel-info col-md-12" class="fulldiv">
       <div class="panel-heading">
         <h3 class="panel-title">Join the adventure!</h3>
@@ -36,8 +50,9 @@
 		</div> 
 		<br>
 		
-		<button type="submit" class="btn btn-primary btn-m">Submit</button>
+		<button type="submit" class="btn btn-primary btn-m col-sm-2">Create Now</button>
 	</form>
 </div>
 
+{% endif %}
 {% endblock %}
