@@ -206,8 +206,8 @@ def sprofile(sid):
 	last = name[1].capitalize()
 	name = first + " " + last
 	skillInfo = getStudentSkills(sid)
-	jobMatches = jobMatch(sid)
-	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo, jobMatches=jobMatches)
+	# jobMatches = jobMatch(sid)
+	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo)
 
 @app.route('/jprofile/<jid>')
 def jprofile(jid):
