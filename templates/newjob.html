@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Student Search{% endblock %}
+{% block head %}
+    {{ super() }}
+    <!-- Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" charset="utf-8">
+
+{% endblock %}
+
+{% block content %}
+<div class="container theme-showcase" role="main">
+  <div class="page-header">
+    <h1><br />Create New Job</h1>
+  </div>
+</div>
+
+<div class="panel panel-info col-md-12" class="fulldiv">
+      <div class="panel-heading">
+        <h3 class="panel-title">Join the adventure!</h3>
+      </div>
+      <div class="panel-body">
+        Please add yourself to our database!
+      </div>
+</div>
+
+<div class="container">
+    <form method="GET" action="/newjob">
+		<div><span class="input-label">{{ form.firstname.label }}: </span> {{ form.firstname }}</div>
+		<div><span class="input-label">{{ form.lastname.label }}: </span> {{ form.lastname }}</div>
+		<div><span class="input-label">{{ form.email.label }}: </span> {{ form.email }}</div>
+		<div><span class="input-label">{{ form.phone.label }}: </span> {{ form.phone }}</div>
+    <div><span class="input-label">{{ form.title.label }}: </span> {{ form.title }}</div>
+    <div><span class="input-label">{{ form.company.label }}: </span> {{ form.company }}</div>
+		<div><span class="input-label">{{ form.skill1.label }}: </span> {{ form.skill1 }}</div>
+		<div><span class="input-label">{{ form.skill2.label }}: </span> {{ form.skill2 }}</div>
+		<div><span class="input-label">{{ form.skill3.label }}: </span> {{ form.skill3 }}</div>
+		</div> 
+		<br>
+		
+		<button type="submit" class="btn btn-primary btn-m">Submit</button>
+	</form>
+</div>
+
+{% endblock %}
