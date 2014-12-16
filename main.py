@@ -232,6 +232,10 @@ def jobsearch():
 			return render_template('job.html', form=form)
 	return render_template('job.html', form=form)
 
+@app.route('/top3')
+def top3serch():
+	
+
 
 @app.route('/newjob')
 def newjob():

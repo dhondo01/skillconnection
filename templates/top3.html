@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Student Search{% endblock %}
+{% block head %}
+    {{ super() }}
+    <!-- Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" charset="utf-8">
+
+{% endblock %}
+
+<div class="page-header">
+    <h3>Congratulations!</h3>
+    <div class="alert alert-success">
+      You are successfully added to our database. Please see the top 3 jobs based on your skills.
+    </div>
+</div>
+
+
+<br>
+<div class="container">
+  <a class="col-sm-6" href="/students"><button type="button" class="btn btn-s btn-success">
+  New Search</button></a>
+</div>
+
+{% endblock %}
