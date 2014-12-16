@@ -9,6 +9,8 @@ from sqlalchemy import create_engine
 engine = create_engine('sqlite:///connection.db')
 Base.metadata.bind = engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm.exc import NoResultFound
+
 DBSession = sessionmaker()
 DBSession.bind = engine
 
@@ -38,8 +40,6 @@ def studentCreate(name, email, phone, skill_list):
 
 	session.commit()
 
-	return jobSearch(new_sid)
-
 def jobCreate(title, company, name, email, phone, skill_list):
 	session = DBSession()
 	j_ordered = session.query(Job).order_by(-Job.id)
@@ -62,26 +62,26 @@ def jobCreate(title, company, name, email, phone, skill_list):
 # Searches for skills in job_id items
 # Counter() counts them and puts them from most common to least
 # Returns the job_ids of the 3 best fits in an array
-def jobSearch(sid):
-	session = DBSession()
+# def jobSearch(sid):
+# 	session = DBSession()
 
-	skill_list = []
-	q = session.query(Skill).filter(Skill.student_id == sid).all()
-	for b in a:
-		skill_list.append(b.skill)
-	tally = []
-	for skill in skill_list:
-		s = session.query(Skill).filter(Skill.skill == skill, Skill.job_id).all()
-		for c in s:
-			j = session.query(Job).filter(Job.id == c.job_id).one()
-			tally.append(c.job_id)
-	most_common = Counter(tally).most_common()
-	result = []
-	result.append(most_common[0][0])
-	result.append(most_common[1][0])
-	result.append(most_common[2][0])
+# 	skill_list = []
+# 	q = session.query(Skill).filter(Skill.student_id == sid).all()
+# 	for b in a:
+# 		skill_list.append(b.skill)
+# 	tally = []
+# 	for skill in skill_list:
+# 		s = session.query(Skill).filter(Skill.skill == skill, Skill.job_id).all()
+# 		for c in s:
+# 			j = session.query(Job).filter(Job.id == c.job_id).one()
+# 			tally.append(c.job_id)
+# 	most_common = Counter(tally).most_common()
+# 	result = []
+# 	result.append(most_common[0][0])
+# 	result.append(most_common[1][0])
+# 	result.append(most_common[2][0])
 
-	return result
+# 	return result
 
 def jobQuery(jid):
 	session = DBSession()
@@ -164,11 +164,14 @@ def studentsearch():
 	form = StudentSearch()
 	if 'name' in request.args: 
 		name = request.args['name']
-		sid = findStudentid(name)
-		sid = str(sid)
-		
-		full_url = url_for('sprofile', sid=sid)
-		return redirect(full_url)
+
+		try:
+			sid = findStudentid(name)
+			sid = str(sid)
+			full_url = url_for('sprofile', sid=sid)
+			return redirect(full_url)
+		except NoResultFound:
+			return render_template('student.html', form=form)
 	return render_template('student.html', form=form)
 
 @app.route('/sprofile/<sid>')
