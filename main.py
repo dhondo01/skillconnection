@@ -35,6 +35,7 @@ def studentCreate(name, email, phone, skill_list):
 	for skill in skill_list:
 		new_skill = Skill(id=new_skid, student_id=new_sid, skill=skill)
 		new_skid += 1
+		session.add(new_skill)
 
 	session.commit()
 
@@ -227,6 +228,7 @@ def newstudent():
 		return redirect(full_url)
 
 	else:
+		flash('error')
 		return render_template('newstudent2.html', form=form)
 
 

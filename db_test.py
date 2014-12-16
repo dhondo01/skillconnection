@@ -49,8 +49,11 @@ def studentCreate(name, email, phone, skill_list):
 	for skill in skill_list:
 		new_skill = Skill(id=new_skid, student_id=new_sid, skill=skill)
 		new_skid += 1
+		session.add(new_skill)
 
 	session.commit()
+
+	return new_sid
 
 def studentQuery(sid):
 	session = DBSession()
@@ -63,4 +66,19 @@ def studentQuery(sid):
 
 	return result
 
-print(studentQuery(8))
+def findStudentid(name):
+	session = DBSession()
+
+	q = session.query(Student).filter(Student.name == name).one()
+	return q.id
+
+def getStudentSkills(sid):
+	session = DBSession()
+	skillArray = []
+	items = session.query(Skill).filter(Skill.student_id == sid).all()
+	for i in items:
+		skillArray.append(i.skill)
+	return skillArray
+
+sid = studentCreate('jack bauer', 'jijil', '7856', ['jklj', 'jiljilkkl', 'jijdhdhd'])
+print(getStudentSkills(sid))
