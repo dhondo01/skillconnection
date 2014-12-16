@@ -129,12 +129,12 @@ class SkillForm(Form):
 class NewStudentForm(Form):
 	firstname = TextField('First Name')
 	lastname = TextField('Last Name')
-	email = TextField('Email')
+	email = TextField('E-mail')
 	phone = TextField('Phone Number')
 
 	skill1 = SelectField('Skill 1', choices=[('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
-	skill2 = SelectField('Skill 2', choices=[('Programming','Programming'),('Leadership','Leadership'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
-	skill3 = SelectField('Skill 3', choices=[('Programming','Programming'),('Team Work','Team Work'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
+	skill2 = SelectField('Skill 2', choices=[('Leadership','Leadership'),('Spanish','Spanish'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
+	skill3 = SelectField('Skill 3', choices=[('Spanish','Spanish'),('Team Work','Team Work'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
 
 class StudentSearch(Form):
 	name = TextField('Name of Student')
@@ -224,7 +224,7 @@ def newstudent():
 		skillArray.append(skill3)
 
 		sid = studentCreate(name, email, phone, skillArray)
-		full_url = url_for('sprofile', sid=sid)
+		full_url = url_for('sprofile', sid=sid, form=True)
 		return redirect(full_url)
 
 	else:
