@@ -224,11 +224,7 @@ def sprofile(sid):
 		jobNameArray.append(jobQuery(i)[2])
 		jobTitleArray.append(jobQuery(i)[0])
 
-<<<<<<< HEAD
 	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo, jobNameArray=jobNameArray, jobTitleArray=jobTitleArray, employerName=employerName)
-=======
-	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo, jobNameArray=jobNameArray, jobTitleArray=jobTitleArray)
->>>>>>> d257c8e92896934e3360e30a1b20da4f0306e612
 
 @app.route('/jprofile/<jid>')
 def jprofile(jid):
