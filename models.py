@@ -172,6 +172,5 @@ new_skill=Skill(id=31, job_id=7, skill="Customer Services")
 session.add(new_skill)
 
 
-
 session.commit()
 

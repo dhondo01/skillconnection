@@ -297,7 +297,7 @@ def newstudent():
 		firstname = firstname.lower()
 		lastname = request.args['lastname']
 		lastname = lastname.lower()
-		name = firstname + " " + lastname		
+		name = firstname + " " + lastname
 		email = request.args['email']
 		phone = request.args['phone']
 
