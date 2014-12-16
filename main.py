@@ -72,7 +72,7 @@ def jobMatch(sid):
 
 	skill_list = []
 	q = session.query(Skill).filter(Skill.student_id == sid).all()
-	for b in a:
+	for b in q:
 		skill_list.append(b.skill)
 	tally = []
 	for skill in skill_list:
@@ -232,10 +232,11 @@ def jobsearch():
 			return render_template('job.html', form=form)
 	return render_template('job.html', form=form)
 
-@app.route('/top3')
-def top3serch():
-	
-
+@app.route('/top3/<sid>')
+def top3search(sid):
+	jobArray = jobMatch(sid)
+	name = studentQuery(sid)[2]
+	return render_template('top3.html', jobArray=jobArray, name=name)
 
 @app.route('/newjob')
 def newjob():
