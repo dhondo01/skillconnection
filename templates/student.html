@@ -17,8 +17,8 @@
 
   <form class="navbar-form navbar-left" role="search" action="" method="GET">
   	<div class="form-group">
-  		<input type="text" class="form-control" placeholder="Student Name">
-      {{ form.name }}
+  		<!-- <input type="text" class="form-control" placeholder="Student Name"> -->
+      <div><span class="input-label">{{ form.name.label }}: </span> {{ form.name }}</div>
   	</div>
   	<button type="submit" class="btn btn-primary">Search Now</button>
   </form>
