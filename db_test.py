@@ -34,51 +34,53 @@ session = DBSession()
 # GET IS BEAUTIFUL
 # q = session.query(Student)
 # print(q.get(2).name)
-def studentCreate(name, email, phone, skill_list):
+def jobCreate(title, company, name, email, phone, skill_list):
 	session = DBSession()
-	s_ordered = session.query(Student).order_by(-Student.id)
-	new_sid = s_ordered.first().id + 1
+	j_ordered = session.query(Job).order_by(-Job.id)
+	new_jid = j_ordered.first().id + 1
 
 	sk_ordered = session.query(Skill).order_by(-Skill.id)
 	new_skid = sk_ordered.first().id + 1
 
-	new_student = Student(id=new_sid, name=name, email=email, phone=phone)
-	session.add(new_student)
+	new_job = Job(id=new_jid, title=title, company=company, email=email, phone=phone, name=name)
+	session.add(new_job)
 
-	# Pass an array of skills
 	for skill in skill_list:
-		new_skill = Skill(id=new_skid, student_id=new_sid, skill=skill)
+		new_skill = Skill(id=new_skid, job_id=new_jid, skill=skill)
 		new_skid += 1
-		session.add(new_skill)
+		session.add(new_job)
+		# Section added
 
 	session.commit()
 
-	return new_sid
+	return new_jid
 
-def studentQuery(sid):
+def jobQuery(jid):
 	session = DBSession()
 
 	result = []
-	q = session.query(Student).filter(Student.id == sid).one()
+	q = session.query(Job).filter(Job.id == jid).one()
+	result.append(q.title)
+	result.append(q.company)
 	result.append(q.name)
 	result.append(q.email)
 	result.append(q.phone)
 
-	return result
+	return result 
 
-def findStudentid(name):
+def findJobid(name):
 	session = DBSession()
 
-	q = session.query(Student).filter(Student.name == name).one()
+	q = session.query(Job).filter(Job.name == name).one()
 	return q.id
 
-def getStudentSkills(sid):
+def getJobSkills(jid):
 	session = DBSession()
 	skillArray = []
-	items = session.query(Skill).filter(Skill.student_id == sid).all()
+	items = session.query(Skill).filter(Skill.job_id == jid).all()
 	for i in items:
 		skillArray.append(i.skill)
 	return skillArray
 
-sid = studentCreate('jack bauer', 'jijil', '7856', ['jklj', 'jiljilkkl', 'jijdhdhd'])
-print(getStudentSkills(sid))
+jid = jobCreate('aeefe', 'sdfcv', 'haha dada', '123153', '8686', ['jklj', 'jiljilkkl', 'jijdhdhd'])
+print(getJobSkills(jid))

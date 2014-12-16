@@ -49,14 +49,18 @@ def jobCreate(title, company, name, email, phone, skill_list):
 	sk_ordered = session.query(Skill).order_by(-Skill.id)
 	new_skid = sk_ordered.first().id + 1
 
-	new_job = Job(id=new_jid, title=title, company=company, email=email, phone=phone)
+	new_job = Job(id=new_jid, title=title, company=company, email=email, phone=phone, name=name)
 	session.add(new_job)
 
 	for skill in skill_list:
 		new_skill = Skill(id=new_skid, job_id=new_jid, skill=skill)
 		new_skid += 1
+		session.add(new_skill)
+		# Section added
 
-	session.commit()	
+	session.commit()
+
+	return new_jid
 
 # Pass student id
 # Gets skills from Skill table
@@ -114,10 +118,24 @@ def findStudentid(name):
 	q = session.query(Student).filter(Student.name == name).one()
 	return q.id
 
+def findJobid(name):
+	session = DBSession()
+
+	q = session.query(Job).filter(Job.name == name).one()
+	return q.id
+
 def getStudentSkills(sid):
 	session = DBSession()
 	skillArray = []
 	items = session.query(Skill).filter(Skill.student_id == sid).all()
+	for i in items:
+		skillArray.append(i.skill)
+	return skillArray
+
+def getJobSkills(jid):
+	session = DBSession()
+	skillArray = []
+	items = session.query(Skill).filter(Skill.job_id == jid).all()
 	for i in items:
 		skillArray.append(i.skill)
 	return skillArray
@@ -139,10 +157,20 @@ class NewStudentForm(Form):
 class StudentSearch(Form):
 	name = TextField('Name of Student')
 
-class JobForm(Form):
-	job = TextField('Job')
+class NewJobForm(Form):
+	firstname = TextField('First Name')
+	lastname = TextField('Last Name')
+	email = TextField('Email')
+	phone = TextField('Phone Number')
+	company = TextField('Company')
+	title = TextField('Job Title')
 
+	skill1 = SelectField('Skill 1', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
+	skill2 = SelectField('Skill 2', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
+	skill3 = SelectField('Skill 3', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
 
+class JobSearch(Form):
+	name = TextField('Employer Name')
 
 # controllers
 @app.errorhandler(404)
@@ -153,13 +181,6 @@ def page_not_found(e):
 @app.route('/')
 def home():
 	return render_template('home.html')
-
-
-@app.route('/skills')
-def skillsearch():
-	form = SkillForm()
-	# if request.args.get("skill") != None:
-	return render_template('skill.html')
 
 @app.route('/students')
 def studentsearch():
@@ -186,22 +207,59 @@ def sprofile(sid):
 	skillInfo = getStudentSkills(sid)
 	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo)
 
-# Search if student in db
+@app.route('/jprofile/<jid>')
+def jprofile(jid):
+	jobInfo = jobQuery(jid)
+	name = jobInfo[2].split()
+	first = name[0].capitalize()
+	last = name[1].capitalize()
+	name = first + " " + last
+	skillInfo = getJobSkills(jid)
+	return render_template('jprofile.html', name=name, jobInfo=jobInfo, skillInfo=skillInfo)
+
 @app.route('/jobs')
 def jobsearch():
-	form = StudentSearch()
-	name = request.args['name']
+	form = JobSearch()
+	if 'name' in request.args:
+		name = request.args['name']
+		try:
+			jid = findJobid(name)
+			jid = str(jid)
+			full_url = url_for('jprofile', jid=jid)
+			return redirect(full_url)
+		except NoResultFound:
+			return render_template('job.html', form=form)
+	return render_template('job.html', form=form)
 
-	if findStudentid(name):
-		sid = findStudentid(name)
-		jobs = jobSearch(sid)
 
-		# If they are, search result
-		return render_template('job.html', form=form, jobs=jobs)
-	# return newstudent
+@app.route('/newjob')
+def newjob():
+	form = NewJobForm()
+	if 'firstname' in request.args:
+		firstname = request.args['firstname']
+		firstname = firstname.lower()
+		lastname = request.args['lastname']
+		lastname = lastname.lower()
+		name = firstname + " " + lastname		
+		email = request.args['email']
+		phone = request.args['phone']
+		company = request.args['company']
+		title = request.args['title']
+
+		skill1 = request.args['skill1']
+		skill2 = request.args['skill2']
+		skill3 = request.args['skill3']
+		skillArray = []
+		skillArray.append(skill1)
+		skillArray.append(skill2)
+		skillArray.append(skill3)
+
+		jid = jobCreate(title, company, name, email, phone, skillArray)
+		full_url = url_for('jprofile', jid=jid)
+		return redirect(full_url)
+
 	else:
-		return render_template('newstudent.html', form=form)
-
+		return render_template('newjob.html', form=form)
 
 @app.route('/newstudent')
 def newstudent():
@@ -228,7 +286,6 @@ def newstudent():
 		return redirect(full_url)
 
 	else:
-		flash('error')
 		return render_template('newstudent2.html', form=form)
 
 

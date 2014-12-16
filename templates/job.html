@@ -14,21 +14,27 @@
   <div class="page-header">
     <h1><br />Job Search</h1>
   </div>
+
+  <form class="navbar-form navbar-left" role="search" action="" method="GET">
+  	<div class="form-group">
+  		<!-- <input type="text" class="form-control" placeholder="Job Name"> -->
+      <div><span class="input-label">{{ form.name.label }}: </span> {{ form.name }}</div>
+  	</div>
+  	<button type="submit" class="btn btn-primary">Search Now</button>
+  </form>
+
 </div>
-     <div class="page-header">
-      <h3>Attention!</h3>
-      <div class="alert alert-info">
-        <strong>Oh snap!</strong> This name is not in our database yet.
+<hr>
+<div class="panel panel-info col-md-12" class="fulldiv">
+        <div class="panel-heading">
+          <h3 class="panel-title">Looking for a job?</h3>
         </div>
-      </div>
-      
-      <form class="navbar-form navbar-left" role="search" method="GET" action="/jobs">
-      	<div class="form-group">
-      		<input type="text" class="form-control" placeholder="Job Name">
-          {{ form.job }}
-      	</div>
-      	<button type="submit" class="btn btn-primary">Search</button>
-      </form>
-      <br>
-	
+        <div class="panel-body">
+          Please choose between the following options if you could not find employer in the search field. You may search again for another job or add a new job to our database. Thank you!
+        </div>
+</div>
+<div class="container">
+  <a class="col-sm-2" href="/newjob"><button type="button" class="btn btn-s btn-success ">Add New Job</button></a>
+</div>
+
 {% endblock %}
