@@ -125,13 +125,14 @@ class SkillForm(Form):
 	skill = TextField('Skill')
 
 class NewStudentForm(Form):
-	name = TextField('Name of Student')
+	firstname = TextField('First Name')
+	lastname = TextField('Last Name')
 	email = TextField('Email')
 	phone = TextField('Phone Number')
 
-	skill1 = SelectField('Skill', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
-	skill2 = SelectField('Skill', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
-	skill3 = SelectField('Skill', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
+	skill1 = SelectField('Skill 1', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
+	skill2 = SelectField('Skill 2', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
+	skill3 = SelectField('Skill 3', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
 
 class StudentSearch(Form):
 	name = TextField('Name of Student')
@@ -220,14 +221,13 @@ def newstudent():
 		skillArray.append(skill2)
 		skillArray.append(skill3)
 
-		try:
-			sid = studentCreate(name, email, phone, skillArray)
-			full_url = url_for('sprofile', sid=sid)
-			return redirect(full_url)
-		except NoResultFound:
-			return render_template('newstudent.html', form=form)
+		sid = studentCreate(name, email, phone, skillArray)
+		full_url = url_for('sprofile', sid=sid)
+		return redirect(full_url)
+
 	else:
-		return render_template('newstudent.html', form=form)
+		flash('error')
+		return render_template('newstudent2.html', form=form)
 
 
 if __name__ == '__main__':

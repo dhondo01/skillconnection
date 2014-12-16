@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Student Search{% endblock %}
+{% block head %}
+    {{ super() }}
+    <!-- Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" charset="utf-8">
+
+{% endblock %}
+
+{% block content %}
+<br><br><br><br>
+    <form method="GET" action="/newstudent">
+	<div><span class="input-label">{{ form.firstname.label }}: </span> {{ form.firstname }}</div>
+	<div><span class="input-label">{{ form.lastname.label }}: </span> {{ form.lastname }}</div>
+	<div><span class="input-label">{{ form.email.label }}: </span> {{ form.email }}</div>
+	<div><span class="input-label">{{ form.phone.label }}: </span> {{ form.phone }}</div>
+	<div><span class="input-label">{{ form.skill1.label }}: </span> {{ form.skill1 }}</div>
+	<div><span class="input-label">{{ form.skill2.label }}: </span> {{ form.skill2 }}</div>
+	<div><span class="input-label">{{ form.skill3.label }}: </span> {{ form.skill3 }}</div>
+
+	</div> 
+	<button type="submit" class="btn btn-primary btn-m">Submit</button>
+</form>
+
+{% endblock %}
