@@ -4,7 +4,7 @@ from wtforms import *
 from flask_bootstrap import Bootstrap
 import os
 
-from models import Student, Job, Connection, Base, Skill
+from models import Student, Job, Base, Skill
 from sqlalchemy import create_engine
 engine = create_engine('sqlite:///connection.db')
 Base.metadata.bind = engine
@@ -184,7 +184,6 @@ def sprofile(sid):
 	skillInfo = getStudentSkills(sid)
 	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo)
 
-<<<<<<< HEAD
 # Search if student in db
 @app.route('/jobs')
 def jobsearch():
