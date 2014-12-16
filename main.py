@@ -83,9 +83,9 @@ def jobMatch(sid):
 			tally.append(c.job_id)
 	most_common = Counter(tally).most_common()
 	result = []
-	result1 = jobQuery(most_common[0][0])[2]
-	result2 = jobQuery(most_common[1][0])[2]
-	result3 = jobQuery(most_common[2][0])[2]
+	result.append(most_common[0][0])
+	result.append(most_common[1][0])
+	result.append(most_common[2][0])
 
 	return result
 
@@ -206,8 +206,21 @@ def sprofile(sid):
 	last = name[1].capitalize()
 	name = first + " " + last
 	skillInfo = getStudentSkills(sid)
+<<<<<<< HEAD
 	# jobMatches = jobMatch(sid)
 	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo)
+=======
+
+	idArray = jobMatch(sid)
+	name = studentQuery(sid)[0]
+	jobNameArray = []
+	jobTitleArray = []
+	for i in idArray:
+		jobNameArray.append(jobQuery(i)[2])
+		jobTitleArray.append(jobQuery(i)[0])
+
+	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo, jobNameArray=jobNameArray, jobTitleArray=jobTitleArray)
+>>>>>>> 11d666c8a333dcbac93a448ff2f1fc748c172e87
 
 @app.route('/jprofile/<jid>')
 def jprofile(jid):
@@ -233,11 +246,11 @@ def jobsearch():
 			return render_template('job.html', form=form)
 	return render_template('job.html', form=form)
 
-@app.route('/top3/<sid>')
-def top3search(sid):
-	jobArray = jobMatch(sid)
-	name = studentQuery(sid)[2]
-	return render_template('top3.html', jobArray=jobArray, name=name)
+# @app.route('/top3/<sid>')
+# def top3search(sid):
+# 	jobArray = jobMatch(sid)
+# 	name = studentQuery(sid)[2]
+# 	return render_template('top3.html', jobArray=jobArray, name=name)
 
 @app.route('/newjob')
 def newjob():
