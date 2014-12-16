@@ -297,7 +297,7 @@ def newstudent():
 		skillArray.append(skill3)
 
 		sid = studentCreate(name, email, phone, skillArray)
-		full_url = url_for('sprofile', sid=sid, form=True)
+		full_url = url_for('sprofile', sid=sid)
 		return redirect(full_url)
 
 	else:
