@@ -38,15 +38,15 @@ class Skill(Base):
     student = relationship(Student)
     job = relationship(Job)
 
-class Connection(Base):
-    __tablename__ = 'connection'
+# class Connection(Base):
+#     __tablename__ = 'connection'
 
-    id = Column(Integer, primary_key=True)
-    student_id = Column(Integer, ForeignKey('student.id'))
-    job_id = Column(Integer, ForeignKey('job.id'))
-    skillMatches = Column(String(250))
-    student = relationship(Student)
-    job = relationship(Job)
+#     id = Column(Integer, primary_key=True)
+#     student_id = Column(Integer, ForeignKey('student.id'))
+#     job_id = Column(Integer, ForeignKey('job.id'))
+#     skillMatches = Column(String(250))
+#     student = relationship(Student)
+#     job = relationship(Job)
 
  
 # Create an engine that stores data in the local directory's

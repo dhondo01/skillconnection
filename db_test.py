@@ -34,12 +34,8 @@ session = DBSession()
 # GET IS BEAUTIFUL
 # q = session.query(Student)
 # print(q.get(2).name)
-def findStudentid(name):
-	session = DBSession()
-
-	q = session.query(Student).filter(Student.name == name).one()
-	return q.id
-try:
-	findStudentid(10)
-except NoResultFound:
-	print('ijij')
+firstname = 'Lucas'
+firstname = firstname.lower()
+lastname = 'Duley'
+lastname = lastname.lower()
+print(firstname + " " + lastname)

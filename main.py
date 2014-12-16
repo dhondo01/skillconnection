@@ -177,45 +177,51 @@ def studentsearch():
 @app.route('/sprofile/<sid>')
 def sprofile(sid):
 	studentInfo = studentQuery(sid)
+	
 	skillInfo = getStudentSkills(sid)
 	return render_template('sprofile.html', studentInfo=studentInfo, skillInfo=skillInfo)
 
-# # Search if student in db
-# @app.route('/jobs')
-# def jobsearch():
-# 	form = StudentSearch()
-# 	name = request.args['name']
+# Search if student in db
+@app.route('/jobs')
+def jobsearch():
+	form = StudentSearch()
+	name = request.args['name']
 
-# 	if findStudentid(name):
-# 		sid = findStudentid(name)
-# 		jobs = jobSearch(sid)
+	if findStudentid(name):
+		sid = findStudentid(name)
+		jobs = jobSearch(sid)
 
-# 		# If they are, search result
-# 		return render_template('job.html', form=form, jobs=jobs)
-# 	# return newstudent
-# 	else:
-# 		return render_template('newstudent.html', form=form)
+		# If they are, search result
+		return render_template('job.html', form=form, jobs=jobs)
+	# return newstudent
+	else:
+		return render_template('newstudent.html', form=form)
 
-# @app.route('/newstudent')
-# def newstudent():
-# 	form = NewStudentForm()
+@app.route('/newstudent')
+def newstudent():
+	form = NewStudentForm()
+	if 'name' in request.args:
+		firstname = request.args['firstname']
+		firstname = firstname.lower()
+		lastname = request.args['lastname']
+		lastname = lastname.lower()
+		name = firstname + " " + lastname		
+		email = request.args['email']
+		phone = request.args['phone']
 
-# 	name = request.args['name']
-# 	email = request.args['email']
-# 	phone = request.args['phone']
+		skill1 = request.args['skill1']
+		skill2 = request.args['skill2']
+		skill3 = request.args['skill3']
+		skillArray = []
+		skillArray.append(skill1)
+		skillArray.append(skill2)
+		skillArray.append(skill3)
 
-# 	skill1 = request.args['skill1']
-# 	skill2 = request.args['skill2']
-# 	skill3 = request.args['skill3']
-# 	skillArray = []
-# 	skillArray.append(skill1)
-# 	skillArray.append(skill2)
-# 	skillArray.append(skill3)
+		sid = studentCreate(name, email, phone, skillArray)
 
-# 	sid = studentCreate(name, email, phone, skillArray)
-# 	jobs = jobSearch(sid)
-
-# 	return render_template('job.html', jobs=jobArray)
+		return redirect(url_for('sprofile', sid=sid))
+	else:
+		return render_template('newstudent.html', form=form)
 
 if __name__ == '__main__':
 	app.run()
