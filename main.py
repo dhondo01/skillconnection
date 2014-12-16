@@ -177,8 +177,12 @@ def studentsearch():
 @app.route('/sprofile/<sid>')
 def sprofile(sid):
 	studentInfo = studentQuery(sid)
+	name = studentInfo[0].split()
+	first = name[0].capitalize()
+	last = name[1].capitalize()
+	name = first + " " + last
 	skillInfo = getStudentSkills(sid)
-	return render_template('sprofile.html', studentInfo=studentInfo, skillInfo=skillInfo)
+	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo)
 
 # # Search if student in db
 # @app.route('/jobs')
@@ -196,26 +200,26 @@ def sprofile(sid):
 # 	else:
 # 		return render_template('newstudent.html', form=form)
 
-# @app.route('/newstudent')
-# def newstudent():
-# 	form = NewStudentForm()
+@app.route('/newstudent')
+def newstudent():
+	form = NewStudentForm()
 
-# 	name = request.args['name']
-# 	email = request.args['email']
-# 	phone = request.args['phone']
+	name = request.args['name']
+	email = request.args['email']
+	phone = request.args['phone']
 
-# 	skill1 = request.args['skill1']
-# 	skill2 = request.args['skill2']
-# 	skill3 = request.args['skill3']
-# 	skillArray = []
-# 	skillArray.append(skill1)
-# 	skillArray.append(skill2)
-# 	skillArray.append(skill3)
+	skill1 = request.args['skill1']
+	skill2 = request.args['skill2']
+	skill3 = request.args['skill3']
+	skillArray = []
+	skillArray.append(skill1)
+	skillArray.append(skill2)
+	skillArray.append(skill3)
 
-# 	sid = studentCreate(name, email, phone, skillArray)
-# 	jobs = jobSearch(sid)
+	sid = studentCreate(name, email, phone, skillArray)
+	jobs = jobSearch(sid)
 
-# 	return render_template('job.html', jobs=jobArray)
+	return render_template('job.html', jobs=jobArray)
 
 if __name__ == '__main__':
 	app.run()

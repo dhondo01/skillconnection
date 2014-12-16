@@ -89,6 +89,8 @@ new_student = Student(id=2, name='bob robertson', email='robebo01@luther.edu', p
 session.add(new_student)
 new_student = Student(id=3, name='jane doe', email='doeja02@luther.edu', phone='789-837-1234')
 session.add(new_student)
+new_student = Student(id=4, name='Dorjee Dhondup', email='dhondo01@luther.edu', phone='515-837-1234')
+session.add(new_student)
 
 # Add job skills
 new_skill = Skill(id=1, job_id=1, skill='Cashier')
@@ -141,6 +143,13 @@ session.add(new_skill)
 new_skill= Skill(id=21, student_id=3, skill='Heavy Labor')
 session.add(new_skill)
 new_skill= Skill(id=22, student_id=3, skill='Computer Skills')
+session.add(new_skill)
+
+new_skill = Skill(id=23, student_id=4, skill='Communication Skills')
+session.add(new_skill)
+new_skill= Skill(id=24, student_id=4, skill='French')
+session.add(new_skill)
+new_skill= Skill(id=25, student_id=4, skill='Customer Services')
 session.add(new_skill)
 
 session.commit()
