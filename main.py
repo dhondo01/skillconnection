@@ -177,10 +177,14 @@ def studentsearch():
 @app.route('/sprofile/<sid>')
 def sprofile(sid):
 	studentInfo = studentQuery(sid)
-	
+	name = studentInfo[0].split()
+	first = name[0].capitalize()
+	last = name[1].capitalize()
+	name = first + " " + last
 	skillInfo = getStudentSkills(sid)
-	return render_template('sprofile.html', studentInfo=studentInfo, skillInfo=skillInfo)
+	return render_template('sprofile.html', name=name, studentInfo=studentInfo, skillInfo=skillInfo)
 
+<<<<<<< HEAD
 # Search if student in db
 @app.route('/jobs')
 def jobsearch():
@@ -196,6 +200,7 @@ def jobsearch():
 	# return newstudent
 	else:
 		return render_template('newstudent.html', form=form)
+
 
 @app.route('/newstudent')
 def newstudent():
@@ -222,6 +227,7 @@ def newstudent():
 		return redirect(url_for('sprofile', sid=sid))
 	else:
 		return render_template('newstudent.html', form=form)
+
 
 if __name__ == '__main__':
 	app.run()

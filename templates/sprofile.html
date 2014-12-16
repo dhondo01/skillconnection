@@ -9,14 +9,29 @@
 {% endblock %}
 
 {% block content %}
-<br><br><br><br>
-	<p>{{studentInfo[0]}}</p>
-	<p>{{studentInfo[1]}}</p>
-	<p>{{studentInfo[2]}}</p>
-	
-	<p>{{skillInfo[0]}}</p>
-	<p>{{skillInfo[1]}}</p>
-	<p>{{skillInfo[2]}}</p>
+<br><br>
 
+<div class="container theme-showcase" role="main">
+  <div class="page-header">
+    <h1><br/>{{ name }}</h1>
+  </div>
+<div class="panel panel-primary col-md-6">
+  <div class="panel-heading">
+    <h3 class="panel-title">Student Profile</h3>
+  </div>
+  <div class="panel-body">
+  	<h4>Skills:</h4>
+    <ul>
+      <li>{{skillInfo[0]}}</li>
+      <li>{{skillInfo[1]}}</li>
+      <li>{{skillInfo[2]}}</li>
+    </ul>
+
+    <h4>Contact {{ name }}: </h3>
+    <ul>
+      <li>Email: <a href= "mailto: {{studentInfo[1]}}" target="_blank"> {{studentInfo[1]}}</a></li>
+      <li>Phone: {{studentInfo[2]}}</li>
+    </ul>
+</div>
 
 {% endblock %}
