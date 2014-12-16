@@ -1,6 +1,8 @@
 venv
 *.pyc
 .DS_Store
+connection.db
+db_test.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
