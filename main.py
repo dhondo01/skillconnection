@@ -245,6 +245,7 @@ def jobsearch():
 	form = JobSearch()
 	if 'name' in request.args:
 		name = request.args['name']
+		name = name.lower()
 		try:
 			jid = findJobid(name)
 			jid = str(jid)
@@ -268,7 +269,7 @@ def newjob():
 		firstname = firstname.lower()
 		lastname = request.args['lastname']
 		lastname = lastname.lower()
-		name = firstname + " " + lastname		
+		name = firstname + " " + lastname
 		email = request.args['email']
 		phone = request.args['phone']
 		company = request.args['company']
