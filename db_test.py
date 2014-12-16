@@ -31,9 +31,7 @@ session = DBSession()
 # address = session.query(Address).filter(Address.person == person).one()
 # address.post_code
 
-# GET IS BEAUTIFUL
-# q = session.query(Student)
-# print(q.get(2).name)
+
 def jobCreate(title, company, name, email, phone, skill_list):
 	session = DBSession()
 	j_ordered = session.query(Job).order_by(-Job.id)

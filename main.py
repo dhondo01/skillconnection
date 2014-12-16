@@ -165,9 +165,9 @@ class NewJobForm(Form):
 	company = TextField('Company')
 	title = TextField('Job Title')
 
-	skill1 = SelectField('Skill 1', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
-	skill2 = SelectField('Skill 2', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
-	skill3 = SelectField('Skill 3', choices=[('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer', 'Customer Service')])
+	skill1 = SelectField('Skill 1', choices=[('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
+	skill2 = SelectField('Skill 2', choices=[('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
+	skill3 = SelectField('Skill 3', choices=[('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
 
 class JobSearch(Form):
 	name = TextField('Employer Name')
