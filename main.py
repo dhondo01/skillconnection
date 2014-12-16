@@ -160,9 +160,9 @@ class NewStudentForm(Form):
 	email = TextField('E-mail')
 	phone = TextField('Phone Number')
 
-	skill1 = SelectField('Skill 1', choices=[('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
-	skill2 = SelectField('Skill 2', choices=[('Leadership','Leadership'),('Spanish','Spanish'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
-	skill3 = SelectField('Skill 3', choices=[('Spanish','Spanish'),('Team Work','Team Work'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
+	skill1 = SelectField('Skill 1', choices=[('French','French'), ('Guest Services','Guest Services'), ('Heavy Labor','Heavy Labor'), ('History','History'), ('Ticket Selling','Ticket Selling'), ('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
+	skill2 = SelectField('Skill 2', choices=[('Customer Service','Customer Service'), ('French','French'), ('Guest Services','Guest Services'), ('Heavy Labor','Heavy Labor'), ('History','History'), ('Ticket Selling','Ticket Selling'), ('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
+	skill3 = SelectField('Skill 3', choices=[('Guest Services','Guest Services'), ('French','French'), ('Heavy Labor','Heavy Labor'), ('History','History'), ('Ticket Selling','Ticket Selling'), ('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
 
 class StudentSearch(Form):
 	name = TextField('Name of Student')
@@ -175,9 +175,9 @@ class NewJobForm(Form):
 	company = TextField('Company')
 	title = TextField('Job Title')
 
-	skill1 = SelectField('Skill 1', choices=[('French','French'), ('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
-	skill2 = SelectField('Skill 2', choices=[('Mac','Mac'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
-	skill3 = SelectField('Skill 3', choices=[('Windows','Windows'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
+	skill1 = SelectField('Skill 1', choices=[('French','French'), ('Guest Services','Guest Services'), ('Heavy Labor','Heavy Labor'), ('History','History'), ('Ticket Selling','Ticket Selling'), ('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
+	skill2 = SelectField('Skill 2', choices=[('Programming','Programming'), ('French','French'), ('Guest Services','Guest Services'), ('Heavy Labor','Heavy Labor'), ('History','History'), ('Ticket Selling','Ticket Selling'), ('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
+	skill3 = SelectField('Skill 3', choices=[('Heavy Labor','Heavy Labor'), ('French','French'), ('Guest Services','Guest Services'), ('Heavy Labor','Heavy Labor'), ('History','History'), ('Ticket Selling','Ticket Selling'), ('Programming','Programming'), ('Communication','Communication'),('Cashier','Cashier'), ('Dishwashing', 'Dishwashing'), ('Customer Service', 'Customer Service')])
 
 class JobSearch(Form):
 	name = TextField('Employer Name')
