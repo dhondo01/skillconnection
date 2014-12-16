@@ -34,16 +34,51 @@
       </ul>
   </div>
 </div>
-<div class="container">
+<!-- <div class="container">
   <p>{{jobNameArray[0]}}{{jobTitleArray[0]}}</p>
   <p>{{jobNameArray[1]}}{{jobTitleArray[1]}}</p>
   <p>{{jobNameArray[2]}}{{jobTitleArray[2]}}</p>
-</div>
-
+</div> -->
+  <div class="panel panel-info col-md-9">
+    <div class="panel-heading">
+      <h3 class="panel-title">Top 3 Jobs for {{ name }}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Employer Name</th>
+                <th>Job Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{jobNameArray[0]}}</td>
+                <td>{{jobTitleArray[0]}}</td>
+              </tr>
+              <tr>
+                <td>{{jobNameArray[1]}}</td>
+                <td>{{jobTitleArray[1]}}</td>
+              </tr>
+              <tr>
+                <td>{{jobNameArray[2]}}</td>
+                <td>{{jobTitleArray[2]}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>  
+      </div>
+    </div>
+  </div>
 <br>
 <div class="container">
   <a class="col-sm-6" href="/students"><button type="button" class="btn btn-s btn-success">
   New Search</button></a>
 </div>
+
+<br><br>
+<br><br>
 
 {% endblock %}
