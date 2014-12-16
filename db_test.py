@@ -12,6 +12,7 @@ Base.metadata.bind = engine
 from sqlalchemy.orm import sessionmaker
 DBSession = sessionmaker()
 DBSession.bind = engine
+from collections import Counter
 
 app = Flask(__name__)
 app.debug = True
@@ -32,26 +33,27 @@ session = DBSession()
 # address.post_code
 
 
-def jobCreate(title, company, name, email, phone, skill_list):
+def jobMatch(sid):
 	session = DBSession()
-	j_ordered = session.query(Job).order_by(-Job.id)
-	new_jid = j_ordered.first().id + 1
 
-	sk_ordered = session.query(Skill).order_by(-Skill.id)
-	new_skid = sk_ordered.first().id + 1
-
-	new_job = Job(id=new_jid, title=title, company=company, email=email, phone=phone, name=name)
-	session.add(new_job)
-
+	skill_list = []
+	q = session.query(Skill).filter(Skill.student_id == sid).all()
+	for b in q:
+		skill_list.append(b.skill)
+	tally = []
 	for skill in skill_list:
-		new_skill = Skill(id=new_skid, job_id=new_jid, skill=skill)
-		new_skid += 1
-		session.add(new_job)
-		# Section added
-
-	session.commit()
-
-	return new_jid
+		s = session.query(Skill).filter(Skill.skill == skill, Skill.job_id).all()
+		for c in s:
+			j = session.query(Job).filter(Job.id == c.job_id).one()
+			tally.append(c.job_id)
+	most_common = Counter(tally).most_common()
+	print(most_common)
+	result = []
+	result.append(most_common[0][0])
+	result.append(most_common[1][0])
+	result.append(most_common[2][0])
+	print(result)
+	return result
 
 def jobQuery(jid):
 	session = DBSession()
@@ -66,19 +68,4 @@ def jobQuery(jid):
 
 	return result 
 
-def findJobid(name):
-	session = DBSession()
-
-	q = session.query(Job).filter(Job.name == name).one()
-	return q.id
-
-def getJobSkills(jid):
-	session = DBSession()
-	skillArray = []
-	items = session.query(Skill).filter(Skill.job_id == jid).all()
-	for i in items:
-		skillArray.append(i.skill)
-	return skillArray
-
-jid = jobCreate('aeefe', 'sdfcv', 'haha dada', '123153', '8686', ['jklj', 'jiljilkkl', 'jijdhdhd'])
-print(getJobSkills(jid))
+print(jobMatch(1))
