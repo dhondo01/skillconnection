@@ -3,7 +3,7 @@ SkillConnection
 
 > CS365 Final Project
 
-### main.py
+> ### main.py
 
   * studentCreate 
 
@@ -37,7 +37,7 @@ SkillConnection
     Returns an array = [name, email]
     
 
- ### models.py
+> ### models.py
 
   4 Tables:
   
