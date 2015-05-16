@@ -1,35 +1,35 @@
 SkillConnection
 ===============
 
-CS365 Final Project
+> CS365 Final Project
 
 main.py
 
-  studentCreate: 
+  ```studentCreate``` 
   
     Pass id, name, email, and an array of the skills
     
     Creates a student in the database and each skill in the skill table connected to the student.
     
-  jobCreate: 
+  ```jobCreate``` 
   
     Pass id, title, name, email, phone, and an array of the skills.
     
     Creates a job in the database and each skill in the skill table connected to the job.
     
-  StudentSearch:
+  ```StudentSearch```
   
     Pass student id.
     
     Returns an array of the 3 job ids that match the skills best.
     
-  jobQuery:
+  ```jobQuery```
   
     Pass job id.
     
     Returns an array = [title, company, name, email, phone]
     
-  studentQuery:
+  ```studentQuery```
   
     Pass student id.
     
