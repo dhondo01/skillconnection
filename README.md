@@ -6,10 +6,12 @@ SkillConnection
 main.py
 
   * studentCreate 
-  
+  ```
     Pass id, name, email, and an array of the skills
     
     Creates a student in the database and each skill in the skill table connected to the student.
+    
+    ```
    
   * jobCreate
   
@@ -48,4 +50,4 @@ main.py
     
     Connection
     
-  Also creates the database when run - probably should be changed later, but works fine now. ```
+  Also creates the database when run - probably should be changed later, but works fine now.
